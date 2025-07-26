@@ -7,13 +7,13 @@ A comprehensive on practical reinforcement learning that bridges the gap between
 ## Book Structure
 
 ### Part 1: The Language of Learning
-- **Chapter 1**: The Reinforcement Learning Paradigm
-- **Chapter 2**: The Formal Framework: Markov Decision Processes
+- **[Chapter 1: The Reinforcement Learning Paradigm](book/part_1_foundations/ch_01_the_rl_paradigm.md)**
+- **[Chapter 2: The Formal Framework: Markov Decision Processes](book/part_1_foundations/ch_02_markov_decision_processes.md)**
 
 ### Part 2: Classical Toolkits for Small Worlds
-- **Chapter 3**: Planning with a Perfect Model: Dynamic Programming
-- **Chapter 4**: Learning from Experience: MC and TD
-- **Chapter 5**: The Cornerstone Algorithm: A Deep Dive into Q-Learning
+- **[Chapter 3: Planning with a Perfect Model: Dynamic Programming](book/part_2_classical_toolkits/ch_03_dynamic_programming.md)**
+- **[Chapter 4: Learning from Experience: MC and TD](book/part_2_classical_toolkits/ch_04_mc_and_td.md)**
+- **[Chapter 5: The Cornerstone Algorithm: A Deep Dive into Q-Learning](book/part_2_classical_toolkits/ch_05_q_learning_deep_dive.md)**
 
 ### Part 3: Scaling Intelligence with Deep Learning
 - **Chapter 6**: From Tables to Tensors: Deep Q-Networks (DQN)
@@ -35,8 +35,8 @@ A comprehensive on practical reinforcement learning that bridges the gap between
 - **Chapter 18**: An Introduction to Multi-Agent RL (MARL)
 
 ### Part 6: Reinforcement Learning for Language Models and AI Agents
-- **Chapter 19**: Reinforcement Learning from Human Feedback (RLHF)
-- **Chapter 20**: Group Relative Policy Optimization (GRPO): The DeepSeek Revolution
+- **[Chapter 19: Reinforcement Learning from Human Feedback (RLHF)](book/part_6_rl_for_llms/ch_19_rlhf.md)**
+- **[Chapter 20: Group Relative Policy Optimization (GRPO): The DeepSeek Revolution](book/part_6_rl_for_llms/ch_20_grpo.md)**
 - **Chapter 21**: Reinforcement Fine-Tuning for AI Agents
 - **Chapter 22**: Advanced Topics in LLM Training with RL
 
