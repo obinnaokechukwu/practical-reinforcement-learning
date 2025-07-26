@@ -1,0 +1,61 @@
+# GRPO Configuration for Code Generation
+# Adapted for programming tasks
+
+# Model settings
+model:
+  name_or_path: "microsoft/DialoGPT-medium"  # Replace with code-capable base model
+  tokenizer_name_or_path: null
+
+# Task configuration
+task_type: "code"
+format_reward_weight: 0.1
+correct_reward_weight: 1.0
+execution_timeout: 5  # seconds
+
+# Data settings
+data:
+  train_path: "data/code_problems.json"
+  eval_path: "data/code_problems_eval.json"
+  languages: ["python", "javascript", "cpp"]
+
+# GRPO hyperparameters (tuned for code)
+group_size: 6  # Smaller groups for code due to execution cost
+clip_epsilon: 0.2
+kl_coef: 0.02  # Lower KL penalty for more exploration
+target_kl: 0.008
+
+# Generation settings
+max_prompt_length: 768  # Longer prompts for code problems
+max_response_length: 1536  # Code can be shorter than math reasoning
+temperature: 0.7  # Slightly lower for more deterministic code
+top_k: 40
+top_p: 0.92
+
+# Training settings
+batch_size: 2  # Smaller due to execution overhead
+eval_batch_size: 4
+gradient_accumulation_steps: 2  # Compensate for smaller batch
+learning_rate: 3e-6  # Lower LR for code fine-tuning
+max_grad_norm: 0.5
+warmup_steps: 200
+
+# Optimization
+adam_epsilon: 1e-8
+weight_decay: 0.005  # Less regularization
+
+# Training schedule
+num_epochs: 2  # Fewer epochs due to execution cost
+max_steps: 5000
+
+# Hardware settings
+device: "cuda"
+fp16: true  # Enable for memory savings
+num_workers: 0
+
+# Logging and saving
+log_interval: 20  # Less frequent due to slower steps
+save_interval: 500
+
+# Evaluation
+eval_during_training: true
+eval_steps: 500

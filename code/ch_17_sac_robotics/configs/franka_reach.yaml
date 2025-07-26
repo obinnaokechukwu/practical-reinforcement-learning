@@ -1,0 +1,39 @@
+# SAC configuration for FrankaReach-v3 (Panda robot reaching task)
+env_id: "FrankaReach-v3"
+
+# SAC hyperparameters
+hidden_dims: [256, 256]
+lr_q: 1e-3  # Higher learning rate for faster convergence
+lr_policy: 1e-3
+lr_alpha: 3e-4
+gamma: 0.99
+tau: 0.005
+alpha: 0.05  # Lower initial temperature for more precise control
+auto_alpha: true
+target_entropy: -7  # -dim(A) for 7-DoF arm
+
+# Training parameters
+total_timesteps: 1_000_000
+batch_size: 256
+learning_starts: 1_000  # Can start learning quickly
+update_frequency: 1
+gradient_steps: 1
+
+# Buffer parameters
+buffer_size: 1_000_000
+prioritized_replay: false
+
+# Evaluation
+eval_frequency: 10_000
+n_eval_episodes: 20  # More episodes for reaching accuracy
+
+# Logging and saving
+save_frequency: 50_000
+log_frequency: 1000
+
+# Environment specific notes:
+# Franka Panda is a 7-DoF robotic arm
+# Task: reach a target position in 3D space
+# Observation space: joint positions, velocities, target position
+# Action space: 7D (joint torques or positions)
+# Reward: negative distance to target + reaching bonus

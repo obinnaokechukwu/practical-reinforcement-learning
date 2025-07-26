@@ -1,0 +1,39 @@
+# SAC configuration for Humanoid-v4
+env_id: "Humanoid-v4"
+
+# SAC hyperparameters
+hidden_dims: [400, 300]  # Larger network for complex task
+lr_q: 3e-4
+lr_policy: 3e-4
+lr_alpha: 3e-4
+gamma: 0.99
+tau: 0.005
+alpha: 0.2
+auto_alpha: true
+target_entropy: -17  # -dim(A) for Humanoid
+
+# Training parameters
+total_timesteps: 10_000_000  # Humanoid requires long training
+batch_size: 256
+learning_starts: 25_000  # More exploration before learning
+update_frequency: 1
+gradient_steps: 1
+
+# Buffer parameters
+buffer_size: 1_000_000
+prioritized_replay: false
+
+# Evaluation
+eval_frequency: 50_000
+n_eval_episodes: 10
+
+# Logging and saving
+save_frequency: 200_000
+log_frequency: 1000
+
+# Environment specific notes:
+# Humanoid is a 17-DoF bipedal robot
+# Observation space: 376D (proprioceptive + contact information)
+# Action space: 17D (torques for each joint)
+# Reward: forward velocity - control cost + survival bonus
+# Very challenging task requiring careful exploration

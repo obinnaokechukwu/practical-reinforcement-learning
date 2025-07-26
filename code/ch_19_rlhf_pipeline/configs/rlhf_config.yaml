@@ -1,0 +1,103 @@
+# RLHF Pipeline Configuration
+
+# Model paths
+base_model: "gpt2"  # Can be any HuggingFace model
+sft_model_path: "./models/sft_model"
+reward_model_path: "./models/reward_model"
+rlhf_model_path: "./models/rlhf_model"
+
+# Data paths
+sft_data_path: "./data/sft_data.json"
+preference_data_path: "./data/preference_data.json"
+prompts_path: "./data/prompts.json"
+
+# SFT Training
+sft:
+  num_epochs: 3
+  batch_size: 8
+  learning_rate: 5e-5
+  max_length: 512
+  warmup_steps: 100
+  gradient_accumulation_steps: 1
+
+# Reward Model Training
+reward_model:
+  num_epochs: 3
+  batch_size: 4
+  learning_rate: 1e-5
+  max_length: 512
+  margin: 0.01
+  eval_split: 0.1
+
+# PPO Training
+ppo:
+  # Model parameters
+  learning_rate: 1e-5
+  value_learning_rate: 1e-4
+  
+  # PPO hyperparameters
+  batch_size: 8
+  mini_batch_size: 2
+  ppo_epochs: 4
+  clip_epsilon: 0.2
+  value_clip_epsilon: 0.2
+  
+  # Coefficients
+  value_loss_coef: 0.5
+  entropy_coef: 0.01
+  kl_coef: 0.1
+  target_kl: 0.01
+  
+  # Generation
+  max_length: 512
+  temperature: 0.7
+  top_k: 50
+  top_p: 0.9
+  
+  # Training
+  num_episodes: 1000
+  eval_every: 100
+  save_every: 200
+  gradient_accumulation_steps: 1
+  max_grad_norm: 1.0
+
+# Evaluation
+evaluation:
+  n_test_prompts: 50
+  categories:
+    - helpful
+    - harmless
+    - honest
+  
+  # Thresholds
+  min_helpfulness: 0.7
+  min_harmlessness: 0.9
+  min_honesty: 0.8
+  max_kl_divergence: 0.05
+
+# Safety settings
+safety:
+  filter_harmful_prompts: true
+  harmful_keywords:
+    - "violence"
+    - "illegal"
+    - "dangerous"
+    - "harmful"
+  
+  refuse_phrases:
+    - "I cannot help with that"
+    - "I don't think I should"
+    - "That would be inappropriate"
+
+# Logging
+logging:
+  use_wandb: false
+  wandb_project: "rlhf-training"
+  log_frequency: 10
+  save_training_curves: true
+
+# Hardware
+hardware:
+  device: "cuda"  # cuda or cpu
+  fp16: true
+  gradient_checkpointing: true

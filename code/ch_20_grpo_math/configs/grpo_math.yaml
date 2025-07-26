@@ -1,0 +1,61 @@
+# GRPO Configuration for Mathematical Reasoning
+# Based on DeepSeek's approach
+
+# Model settings
+model:
+  name_or_path: "microsoft/DialoGPT-medium"  # Replace with desired base model
+  tokenizer_name_or_path: null  # Use same as model if null
+
+# Task configuration
+task_type: "math"
+format_reward_weight: 0.1
+correct_reward_weight: 1.0
+partial_credit: true
+
+# Data settings
+data:
+  train_path: "data/math_problems.json"
+  eval_path: "data/math_problems_eval.json"
+  problem_types: ["arithmetic", "algebra", "geometry", "word_problem"]
+
+# GRPO hyperparameters
+group_size: 8
+clip_epsilon: 0.2
+kl_coef: 0.04
+target_kl: 0.01
+
+# Generation settings
+max_prompt_length: 512
+max_response_length: 2048
+temperature: 0.8
+top_k: 50
+top_p: 0.95
+
+# Training settings
+batch_size: 4
+eval_batch_size: 8
+gradient_accumulation_steps: 1
+learning_rate: 5e-6
+max_grad_norm: 1.0
+warmup_steps: 100
+
+# Optimization
+adam_epsilon: 1e-8
+weight_decay: 0.01
+
+# Training schedule
+num_epochs: 3
+max_steps: null  # Set if you want to limit by steps instead of epochs
+
+# Hardware settings
+device: "cuda"  # or "cpu"
+fp16: false  # Enable for memory savings
+num_workers: 0
+
+# Logging and saving
+log_interval: 10
+save_interval: 1000
+
+# Evaluation
+eval_during_training: true
+eval_steps: 1000

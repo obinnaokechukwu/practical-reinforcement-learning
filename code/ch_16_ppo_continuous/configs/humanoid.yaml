@@ -1,0 +1,42 @@
+# PPO configuration for Humanoid-v4
+env_id: "Humanoid-v4"
+
+# Training parameters
+total_timesteps: 10_000_000  # Humanoid requires longer training
+num_envs: 16  # More parallel environments
+num_steps: 2048
+
+# PPO hyperparameters
+learning_rate: 3e-4
+clip_epsilon: 0.2
+epochs: 10
+mini_batch_size: 256  # Larger batch size for complex task
+
+# GAE parameters
+gamma: 0.99
+gae_lambda: 0.95
+
+# Loss coefficients
+value_loss_coef: 0.5
+entropy_coef: 0.01  # Small entropy bonus helps exploration
+
+# Other parameters
+max_grad_norm: 0.5
+normalize_advantages: true
+clip_value_loss: true
+value_clip_epsilon: 0.2
+target_kl: 0.02  # Slightly higher KL threshold
+
+# Network architecture
+hidden_dims: [512, 512]  # Larger network for complex task
+activation: "elu"  # ELU often works better for Humanoid
+log_std_init: -0.7  # Lower initial std for more stable training
+
+# Environment specific
+normalize: true
+lr_schedule: "cosine"  # Cosine schedule for long training
+
+# Logging and checkpointing
+save_freq: 500_000
+eval_freq: 100_000
+log_interval: 10

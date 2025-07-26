@@ -1,0 +1,21 @@
+torch>=2.0.0
+transformers>=4.30.0
+numpy>=1.21.0
+tqdm>=4.65.0
+wandb>=0.15.0
+dataclasses
+typing-extensions>=4.0.0
+
+# For mathematical operations in examples
+sympy>=1.11.0
+
+# Optional: For better tokenization
+sentencepiece>=0.1.99
+
+# Optional: For visualization
+matplotlib>=3.5.0
+
+# Development dependencies
+pytest>=7.0.0
+black>=22.0.0
+flake8>=4.0.0

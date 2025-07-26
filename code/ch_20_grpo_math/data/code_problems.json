@@ -1,0 +1,189 @@
+[
+  {
+    "problem": "Write a Python function that calculates the factorial of a non-negative integer n.",
+    "solution": "def factorial(n):\n    if n == 0 or n == 1:\n        return 1\n    return n * factorial(n - 1)",
+    "test_cases": [
+      {"input": "0", "output": "1"},
+      {"input": "1", "output": "1"},
+      {"input": "5", "output": "120"}
+    ],
+    "language": "python",
+    "difficulty": "easy",
+    "metadata": {
+      "source": "basic_algorithms",
+      "category": "recursion"
+    }
+  },
+  {
+    "problem": "Write a function that returns the nth Fibonacci number.",
+    "solution": "def fibonacci(n):\n    if n <= 1:\n        return n\n    return fibonacci(n-1) + fibonacci(n-2)",
+    "test_cases": [
+      {"input": "0", "output": "0"},
+      {"input": "1", "output": "1"},
+      {"input": "6", "output": "8"}
+    ],
+    "language": "python",
+    "difficulty": "easy",
+    "metadata": {
+      "source": "basic_algorithms",
+      "category": "recursion"
+    }
+  },
+  {
+    "problem": "Write a function that checks if a given string is a palindrome (reads the same forwards and backwards).",
+    "solution": "def is_palindrome(s):\n    s = s.lower().replace(' ', '')\n    return s == s[::-1]",
+    "test_cases": [
+      {"input": "'racecar'", "output": "True"},
+      {"input": "'hello'", "output": "False"},
+      {"input": "'A man a plan a canal Panama'", "output": "True"}
+    ],
+    "language": "python",
+    "difficulty": "easy",
+    "metadata": {
+      "source": "string_problems",
+      "category": "palindromes"
+    }
+  },
+  {
+    "problem": "Write a function that finds the maximum element in a list.",
+    "solution": "def find_max(lst):\n    if not lst:\n        return None\n    max_val = lst[0]\n    for num in lst[1:]:\n        if num > max_val:\n            max_val = num\n    return max_val",
+    "test_cases": [
+      {"input": "[1, 3, 2, 8, 5]", "output": "8"},
+      {"input": "[-1, -5, -2]", "output": "-1"},
+      {"input": "[42]", "output": "42"}
+    ],
+    "language": "python",
+    "difficulty": "easy",
+    "metadata": {
+      "source": "array_problems",
+      "category": "search"
+    }
+  },
+  {
+    "problem": "Write a function that reverses a linked list.",
+    "solution": "def reverse_linked_list(head):\n    prev = None\n    current = head\n    while current:\n        next_node = current.next\n        current.next = prev\n        prev = current\n        current = next_node\n    return prev",
+    "test_cases": [
+      {"input": "ListNode(1, ListNode(2, ListNode(3)))", "output": "ListNode(3, ListNode(2, ListNode(1)))"}
+    ],
+    "language": "python",
+    "difficulty": "medium",
+    "metadata": {
+      "source": "data_structures",
+      "category": "linked_lists"
+    }
+  },
+  {
+    "problem": "Write a function that performs binary search on a sorted array.",
+    "solution": "def binary_search(arr, target):\n    left, right = 0, len(arr) - 1\n    while left <= right:\n        mid = (left + right) // 2\n        if arr[mid] == target:\n            return mid\n        elif arr[mid] < target:\n            left = mid + 1\n        else:\n            right = mid - 1\n    return -1",
+    "test_cases": [
+      {"input": "[1, 2, 3, 4, 5], 3", "output": "2"},
+      {"input": "[1, 2, 3, 4, 5], 6", "output": "-1"},
+      {"input": "[1], 1", "output": "0"}
+    ],
+    "language": "python",
+    "difficulty": "medium",
+    "metadata": {
+      "source": "search_algorithms",
+      "category": "binary_search"
+    }
+  },
+  {
+    "problem": "Write a function that merges two sorted arrays into one sorted array.",
+    "solution": "def merge_sorted_arrays(arr1, arr2):\n    result = []\n    i = j = 0\n    while i < len(arr1) and j < len(arr2):\n        if arr1[i] <= arr2[j]:\n            result.append(arr1[i])\n            i += 1\n        else:\n            result.append(arr2[j])\n            j += 1\n    result.extend(arr1[i:])\n    result.extend(arr2[j:])\n    return result",
+    "test_cases": [
+      {"input": "[1, 3, 5], [2, 4, 6]", "output": "[1, 2, 3, 4, 5, 6]"},
+      {"input": "[1, 2, 3], []", "output": "[1, 2, 3]"},
+      {"input": "[], [4, 5, 6]", "output": "[4, 5, 6]"}
+    ],
+    "language": "python", 
+    "difficulty": "medium",
+    "metadata": {
+      "source": "merge_algorithms",
+      "category": "array_merging"
+    }
+  },
+  {
+    "problem": "Write a function that checks if a binary tree is valid (BST property holds).",
+    "solution": "def is_valid_bst(root, min_val=float('-inf'), max_val=float('inf')):\n    if not root:\n        return True\n    if root.val <= min_val or root.val >= max_val:\n        return False\n    return (is_valid_bst(root.left, min_val, root.val) and\n            is_valid_bst(root.right, root.val, max_val))",
+    "test_cases": [
+      {"input": "TreeNode(2, TreeNode(1), TreeNode(3))", "output": "True"},
+      {"input": "TreeNode(5, TreeNode(1), TreeNode(4, TreeNode(3), TreeNode(6)))", "output": "False"}
+    ],
+    "language": "python",
+    "difficulty": "medium",
+    "metadata": {
+      "source": "tree_problems",
+      "category": "binary_search_trees"
+    }
+  },
+  {
+    "problem": "Write a function that finds the longest common subsequence of two strings.",
+    "solution": "def lcs(s1, s2):\n    m, n = len(s1), len(s2)\n    dp = [[0] * (n + 1) for _ in range(m + 1)]\n    \n    for i in range(1, m + 1):\n        for j in range(1, n + 1):\n            if s1[i-1] == s2[j-1]:\n                dp[i][j] = dp[i-1][j-1] + 1\n            else:\n                dp[i][j] = max(dp[i-1][j], dp[i][j-1])\n    \n    return dp[m][n]",
+    "test_cases": [
+      {"input": "'ABCDGH', 'AEDFHR'", "output": "3"},
+      {"input": "'AGGTAB', 'GXTXAYB'", "output": "4"}
+    ],
+    "language": "python",
+    "difficulty": "hard",
+    "metadata": {
+      "source": "dynamic_programming",
+      "category": "string_algorithms"
+    }
+  },
+  {
+    "problem": "Write a function that solves the 0/1 Knapsack problem using dynamic programming.",
+    "solution": "def knapsack(weights, values, capacity):\n    n = len(weights)\n    dp = [[0] * (capacity + 1) for _ in range(n + 1)]\n    \n    for i in range(1, n + 1):\n        for w in range(1, capacity + 1):\n            if weights[i-1] <= w:\n                dp[i][w] = max(\n                    dp[i-1][w],\n                    dp[i-1][w - weights[i-1]] + values[i-1]\n                )\n            else:\n                dp[i][w] = dp[i-1][w]\n    \n    return dp[n][capacity]",
+    "test_cases": [
+      {"input": "[10, 20, 30], [60, 100, 120], 50", "output": "220"},
+      {"input": "[1, 3, 4, 5], [1, 4, 5, 7], 7", "output": "9"}
+    ],
+    "language": "python",
+    "difficulty": "hard",
+    "metadata": {
+      "source": "dynamic_programming", 
+      "category": "optimization"
+    }
+  },
+  {
+    "problem": "Write a function that implements quicksort algorithm.",
+    "solution": "def quicksort(arr):\n    if len(arr) <= 1:\n        return arr\n    \n    pivot = arr[len(arr) // 2]\n    left = [x for x in arr if x < pivot]\n    middle = [x for x in arr if x == pivot]\n    right = [x for x in arr if x > pivot]\n    \n    return quicksort(left) + middle + quicksort(right)",
+    "test_cases": [
+      {"input": "[3, 6, 8, 10, 1, 2, 1]", "output": "[1, 1, 2, 3, 6, 8, 10]"},
+      {"input": "[5, 4, 3, 2, 1]", "output": "[1, 2, 3, 4, 5]"}
+    ],
+    "language": "python",
+    "difficulty": "hard",
+    "metadata": {
+      "source": "sorting_algorithms",
+      "category": "divide_and_conquer"
+    }
+  },
+  {
+    "problem": "Write a function that finds all permutations of a given string.",
+    "solution": "def permutations(s):\n    if len(s) <= 1:\n        return [s]\n    \n    result = []\n    for i in range(len(s)):\n        char = s[i]\n        remaining = s[:i] + s[i+1:]\n        for perm in permutations(remaining):\n            result.append(char + perm)\n    \n    return result",
+    "test_cases": [
+      {"input": "'abc'", "output": "['abc', 'acb', 'bac', 'bca', 'cab', 'cba']"},
+      {"input": "'ab'", "output": "['ab', 'ba']"}
+    ],
+    "language": "python",
+    "difficulty": "hard", 
+    "metadata": {
+      "source": "combinatorics",
+      "category": "permutations"
+    }
+  },
+  {
+    "problem": "Write a function that detects if there's a cycle in a directed graph using DFS.",
+    "solution": "def has_cycle(graph):\n    WHITE, GRAY, BLACK = 0, 1, 2\n    color = {node: WHITE for node in graph}\n    \n    def dfs(node):\n        if color[node] == GRAY:\n            return True  # Back edge found\n        if color[node] == BLACK:\n            return False  # Already processed\n        \n        color[node] = GRAY\n        for neighbor in graph.get(node, []):\n            if dfs(neighbor):\n                return True\n        color[node] = BLACK\n        return False\n    \n    for node in graph:\n        if color[node] == WHITE:\n            if dfs(node):\n                return True\n    return False",
+    "test_cases": [
+      {"input": "{'A': ['B'], 'B': ['C'], 'C': ['A']}", "output": "True"},
+      {"input": "{'A': ['B'], 'B': ['C'], 'C': []}", "output": "False"}
+    ],
+    "language": "python",
+    "difficulty": "hard",
+    "metadata": {
+      "source": "graph_algorithms",
+      "category": "cycle_detection"
+    }
+  }
+]

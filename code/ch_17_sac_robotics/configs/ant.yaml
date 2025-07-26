@@ -1,0 +1,38 @@
+# SAC configuration for Ant-v4
+env_id: "Ant-v4"
+
+# SAC hyperparameters
+hidden_dims: [256, 256]
+lr_q: 3e-4
+lr_policy: 3e-4
+lr_alpha: 3e-4
+gamma: 0.99
+tau: 0.005
+alpha: 0.2
+auto_alpha: true
+target_entropy: -8  # -dim(A) for Ant
+
+# Training parameters
+total_timesteps: 3_000_000
+batch_size: 256
+learning_starts: 10_000
+update_frequency: 1
+gradient_steps: 1
+
+# Buffer parameters
+buffer_size: 1_000_000
+prioritized_replay: false
+
+# Evaluation
+eval_frequency: 20_000
+n_eval_episodes: 10
+
+# Logging and saving
+save_frequency: 100_000
+log_frequency: 1000
+
+# Environment specific notes:
+# Ant is an 8-DoF quadruped robot
+# Observation space: 27D (includes joint angles, velocities, contact forces)
+# Action space: 8D (torques for each joint)
+# Reward: forward velocity - control cost + survival bonus
